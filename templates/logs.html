@@ -1,0 +1,6 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Последние 50 записей app.log</h1>
+<pre class="log">{% for line in lines %}{{ line }}
+{% endfor %}</pre>
+{% endblock %}

@@ -1,0 +1,7 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Кластеризация отзывов</h1>
+<p>Кластеры построены по векторным представлениям отзывов. Интерактивная версия сохранена в exports/interactive_clusters.html.</p>
+<img class="wide" src="{{ url_for('static', filename='img/clusters.png') }}">
+<div class="card"><p>При запуске локально откройте файл <b>exports/interactive_clusters.html</b>, чтобы смотреть примеры отзывов при наведении на точки.</p></div>
+{% endblock %}

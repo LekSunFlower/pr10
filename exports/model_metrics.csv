@@ -1,0 +1,11 @@
+﻿model,stage,Accuracy,Precision,Recall,F1,ROC_AUC,best_params
+LogisticRegression,до подбора,1.0,1.0,1.0,1.0,1.0,
+LogisticRegression,после GridSearchCV,1.0,1.0,1.0,1.0,1.0,"{""clf__C"": 0.5, ""clf__class_weight"": ""balanced"", ""clf__solver"": ""liblinear""}"
+RandomForest,до подбора,1.0,1.0,1.0,1.0,1.0,
+RandomForest,после GridSearchCV,1.0,1.0,1.0,1.0,1.0,"{""clf__max_depth"": null, ""clf__min_samples_split"": 2, ""clf__n_estimators"": 60}"
+MLPClassifier,до подбора,1.0,1.0,1.0,1.0,1.0,
+MLPClassifier,после GridSearchCV,1.0,1.0,1.0,1.0,1.0,"{""clf__alpha"": 0.001, ""clf__hidden_layer_sizes"": [24], ""clf__learning_rate_init"": 0.01}"
+XGBoost,до подбора,0.9875,1.0,0.9773,0.9885,0.9975,
+XGBoost,после GridSearchCV,0.9875,1.0,0.9773,0.9885,1.0,"{""clf__learning_rate"": 0.1, ""clf__max_depth"": 3, ""clf__n_estimators"": 40}"
+LightGBM,до подбора,1.0,1.0,1.0,1.0,1.0,
+LightGBM,после GridSearchCV,1.0,1.0,1.0,1.0,1.0,"{""clf__learning_rate"": 0.1, ""clf__max_depth"": 3, ""clf__n_estimators"": 40}"

@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="hero">
+  <h1>Анализ отзывов клиентов интернет-магазина</h1>
+  <p>Ваш ID в сессии: <b>{{ user_id }}</b>. По нему формируются персональные рекомендации.</p>
+</section>
+<div class="grid two">
+  <section class="card">
+    <h2>Оставить отзыв</h2>
+    <form method="post" class="form">
+      <label>Товар</label>
+      <select name="product_id">
+        {% for p in products %}<option value="{{ p.product_id }}">{{ p.product }}</option>{% endfor %}
+      </select>
+      <label>Оценка</label>
+      <select name="rating">
+        {% for r in [5,4,3,2,1] %}<option value="{{ r }}">{{ r }}</option>{% endfor %}
+      </select>
+      <label>Текст отзыва</label>
+      <textarea name="text" rows="6" placeholder="Например: товар понравился, доставка быстрая..."></textarea>
+      <button type="submit">Сохранить и предсказать тональность</button>
+    </form>
+    {% if prediction %}
+      <div class="result">Тональность: <b>{{ prediction.label }}</b>, уверенность: <b>{{ prediction.confidence }}%</b><br>Текст после защиты ПДн: {{ prediction.masked_text }}</div>
+    {% endif %}
+  </section>
+  <section class="card">
+    <h2>Рекомендации для пользователя</h2>
+    <ol>
+      {% for r in recommendations %}
+        <li>{{ r.product }} — прогноз/средняя оценка: {{ r.predicted_rating or r.avg_rating }}</li>
+      {% endfor %}
+    </ol>
+    <h3>Частые слова в негативных отзывах</h3>
+    <p>{% for word, count in neg_words %}<span class="tag">{{ word }} ×{{ count }}</span>{% endfor %}</p>
+  </section>
+</div>
+<section class="grid three">
+  <img class="chart" src="{{ url_for('static', filename='img/ratings_distribution.png') }}">
+  <img class="chart" src="{{ url_for('static', filename='img/reviews_by_day.png') }}">
+  <img class="chart" src="{{ url_for('static', filename='img/wordcloud.png') }}">
+</section>
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Статистика по товарам</h1>
+<table>
+  <thead><tr><th>Товар</th><th>Кол-во отзывов</th><th>Средний рейтинг</th><th>Доля позитива</th><th>Последний отзыв</th></tr></thead>
+  <tbody>
+  {% for s in stats %}
+    <tr><td>{{ s.product }}</td><td>{{ s.reviews_count }}</td><td>{{ s.avg_rating }}</td><td>{{ s.positive_share }}%</td><td>{{ s.last_review }}</td></tr>
+  {% endfor %}
+  </tbody>
+</table>
+<img class="wide" src="{{ url_for('static', filename='img/top_positive_products.png') }}">
+{% endblock %}

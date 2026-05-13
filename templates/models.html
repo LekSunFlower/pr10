@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Сравнение моделей классификации тональности</h1>
+<table>
+  <thead><tr><th>Модель</th><th>Этап</th><th>Accuracy</th><th>Precision</th><th>Recall</th><th>F1</th><th>ROC-AUC</th></tr></thead>
+  <tbody>
+  {% for m in metrics %}
+    <tr><td>{{ m.model }}</td><td>{{ m.stage }}</td><td>{{ m.Accuracy }}</td><td>{{ m.Precision }}</td><td>{{ m.Recall }}</td><td>{{ m.F1 }}</td><td>{{ m.ROC_AUC }}</td></tr>
+  {% endfor %}
+  </tbody>
+</table>
+<div class="grid two">
+  <img class="chart" src="{{ url_for('static', filename='img/model_metrics_table.png') }}">
+  <img class="chart" src="{{ url_for('static', filename='img/roc_curves.png') }}">
+</div>
+{% endblock %}
